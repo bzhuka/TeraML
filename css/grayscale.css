@@ -147,7 +147,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/background-bg.jpg) no-repeat bottom center scroll;
+    background: url(../img/frontpage.jpg) no-repeat bottom center scroll;
     background-color: #fff;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -192,7 +192,7 @@ a:focus {
     border: 2px solid #000;
     border-radius: 100%!important;
     font-size: 40px;
-    color: #000;
+    color: #fff;
     background: 0 0;
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
@@ -269,7 +269,7 @@ a:focus {
 }
 
 #contact{
-    background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
+    background: url(../img/neural.jpg) no-repeat center center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
