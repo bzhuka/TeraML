@@ -7,8 +7,8 @@ username = "hack_user12"
 password = "tdhackathon"
 $(function(){
 	$("#PCA_button").click(function(){
-                data = {"query" : 'select * from crime_data.murders_by_weapon_type'};
-                alert(JSON.stringify(data));
+                data = {"query" : $("#PCA_input").val()};
+                console.log(JSON.stringify(data));
 		//--------this piece of code is to load into the mongodb once------
                 $.ajax({
                         type: "POST",
@@ -19,7 +19,7 @@ $(function(){
                                 'Authorization': 'Basic ' + btoa(username + ':' + password)
                         },
                         data: JSON.stringify({
-                                query: $("#PCA_input").val(),//"select * from crime_data.murders_by_weapon_type",
+                                query: $("#PCA_input").val(),
                                 format: 'object'
                         }),
                         success: function (json) {
@@ -31,7 +31,7 @@ $(function(){
                 });
                 //----------
                 //--------------This piece of code is to query the python backend---------
-                /*$.ajax({
+                /*($.ajax({
                         type: "GET",
                         url: "/query?val="+$("#PCA_input").val(),
                         contentType: "application/json",
