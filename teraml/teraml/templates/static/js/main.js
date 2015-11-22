@@ -6,10 +6,10 @@ path = '/tdrest/systems/' + dbsAlias + '/queries'
 username = "hack_user12"
 password = "tdhackathon"
 $(function(){
-	$("#PCA_button").click(function(){
+        $("#PCA_button").click(function(){
                 data = {"query" : $("#PCA_input").val()};
                 console.log(JSON.stringify(data));
-		//--------this piece of code is to load into the mongodb once------
+                //--------this piece of code is to load into the mongodb once------
                 $.ajax({
                         type: "POST",
                         url: "http://"+wsHost+":"+wsPort+path,
@@ -23,6 +23,7 @@ $(function(){
                                 format: 'object'
                         }),
                         success: function (json) {
+                                data = JSON.stringify(json)
                                 $("#PCA_output").append(JSON.stringify(json))
                         },            
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -31,18 +32,28 @@ $(function(){
                 });
                 //----------
                 //--------------This piece of code is to query the python backend---------
+<<<<<<< HEAD
                 $.ajax({
                         type: "POST",
+=======
+                ($.ajax({
+                        type: "GET",
+>>>>>>> 502c9c298be200eb8590e77ea3fd806574092d3f
                         url: "/query?val="+$("#PCA_input").val(),
                         contentType: "application/json",
-                        data: {},
+                        data: JSON.stringify(data),
                         success: function (json) {
-                                $("#PCA_output").append(JSON.stringify(json))
+                                //A-OK
+                                $("#PCA_output").append("WE GOT IT")
                         },            
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                 alert("Was not able to process request : " + errorThrown);
                         }
+<<<<<<< HEAD
 				});
+=======
+                })
+>>>>>>> 502c9c298be200eb8590e77ea3fd806574092d3f
         })
 })
         

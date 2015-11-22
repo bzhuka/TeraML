@@ -21,6 +21,8 @@ class KMean:
                     minDist = self.dist(x, c)
                     index = i
             if index in centroidGroups:
+                print("SIZE OF CENTROID GROUP" + str(centroidGroups[index].shape))
+                print("SIZE OF X" + str(x.shape))
                 centroidGroups[index] = np.vstack([centroidGroups[index], x])
             else:
                 centroidGroups[index] = x
@@ -43,7 +45,12 @@ class KMean:
             #print(cGroup)
             for i in cGroup: #finding the avg of each centroid
                 arr = cGroup[i]
-                p = np.mean(arr, axis=0)
+                print("ARR:" + str(arr.shape))
+                if len(arr.shape) == 2 :
+                    p = np.mean(arr, axis=0)
+                else:
+                    p = arr
+                print("P" + str(p))
                 sumDist += self.dist(p, centroids[i])
                 centroids[i] = p #assign the new centroid
             maxIter-= 1
