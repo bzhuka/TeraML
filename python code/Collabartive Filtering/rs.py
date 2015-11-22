@@ -1,3 +1,7 @@
+#RECOMMENDER SYSTEM WRITTEN IN PYTHON
+#
+#
+#
 import numpy as np
 import scipy.optimize as spo
 import scipy.io as spi
@@ -54,9 +58,8 @@ def featureNormalize(Y,R):
 def predict(my_input):
     #load data from .mat file 
     matrices = spi.loadmat(sysargs[1])
-    R = matrices.get('R')
-    Y = matrices.get('Y')
-    
+    Y = matrices.get('X').T
+    R = np.asarray(np.asarray(Y,dtype=bool),dtype=int)
     #testParams = spi.loadmat(sysargs[2])
     #X = testParams.get('X')
     #Theta = testParams.get('Theta')
@@ -66,9 +69,12 @@ def predict(my_input):
     Y = np.concatenate((my_input, Y), 1)
     R = np.concatenate((r_input, R), 1)
     
-    Ymean = featureNormalize(Y,R)
+      #_featureNormalize(Y,R)
     #Y = Y-Ymean.reshape((np.size(Ymean),1))
 
+    normalize = np.power(10,[12, 7,2,0,4,8,1,3,6,5,3,6,2,4,6,3,5,5,2,2])
+    Y = Y / np.reshape(normalize,(20,1))
+    #print(R)
     #get useful values
     (numElements,numUsers) = np.shape(R)
     numFeatures = 10;
@@ -87,27 +93,20 @@ def predict(my_input):
     theta = np.reshape(result[numFeatures*numElements:],(numUsers, numFeatures)) # unroll parameters
 
     p = np.dot(X,np.transpose(theta))
-    index_predictions = np.argsort(p[:,0] + Ymean)
-    print(index_predictions[-10:])
-    predictions =  np.sort(p[:,0] + Ymean)
-    print(predictions[-10:])
+    return(p[:,0] * normalize)
 
 
 def testCase():
-    mv_ratings = np.zeros((1682,1))
+    mv_ratings = np.zeros((20,1))
+    mv_ratings = spi.loadmat((sysargs[1])).get('X').T
+   
+    delta_temp = 0;
 
-    mv_ratings[0] = 4;
-    mv_ratings[97] = 2;
-    mv_ratings[6] = 3;
-    mv_ratings[11] = 5;
-    mv_ratings[53] = 4;
-    mv_ratings[63] = 5;
-    mv_ratings[65] = 3;
-    mv_ratings[68] = 5;
-    mv_ratings[182] = 4;
-    mv_ratings[225] = 5;
-    mv_ratings[354] = 5;
+    for i in range(0,20):
+        delta = mv_ratings[:,i] - predict(mv_ratings)
+        delta_temp = (delta/ mv_ratings[:,i])
+
+    mpl.pyplot.bar((delta_temp/i) * 100)
+    mpl.pyplot.show()
     
-    predict(mv_ratings)
-
 testCase()

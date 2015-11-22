@@ -12,6 +12,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
 
     url(r'^$', 'teramlapp.views.index'),
+    url(r'^query$', 'teramlapp.views.query'),
     # Examples:
     # url(r'^$', 'teraml.views.home', name='home'),
     # url(r'^teraml/', include('teraml.foo.urls')),
