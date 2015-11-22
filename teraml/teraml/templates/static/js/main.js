@@ -32,28 +32,7 @@ $(function(){
                 });
                 //----------
                 //--------------This piece of code is to query the python backend---------
-<<<<<<< HEAD
-                $.ajax({
-                        type: "POST",
-=======
-                ($.ajax({
-                        type: "GET",
->>>>>>> 502c9c298be200eb8590e77ea3fd806574092d3f
-                        url: "/query?val="+$("#PCA_input").val(),
-                        contentType: "application/json",
-                        data: JSON.stringify(data),
-                        success: function (json) {
-                                //A-OK
-                                $("#PCA_output").append("WE GOT IT")
-                        },            
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert("Was not able to process request : " + errorThrown);
-                        }
-<<<<<<< HEAD
-				});
-=======
-                })
->>>>>>> 502c9c298be200eb8590e77ea3fd806574092d3f
+            }
         })
 })
         

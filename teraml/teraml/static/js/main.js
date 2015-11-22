@@ -31,7 +31,7 @@ $(function(){
                 });
                 //----------
                 //--------------This piece of code is to query the python backend---------
-                $.ajax({
+               /* $.ajax({
                         type: "GET",
                         url: "query",
 						//?val="+$("#PCA_input").val(),
@@ -43,7 +43,7 @@ $(function(){
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                 alert("Was not able to process request : " + errorThrown);
                         }
-				});
+				});*/
         })
 })
         
