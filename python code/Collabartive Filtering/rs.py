@@ -106,7 +106,6 @@ def testCase():
         delta = mv_ratings[:,i] - predict(mv_ratings)
         delta_temp = (delta/ mv_ratings[:,i])
 
-    mpl.pyplot.bar((delta_temp/i) * 100)
-    mpl.pyplot.show()
+    print((delta_temp/i) * 100)
     
 testCase()
